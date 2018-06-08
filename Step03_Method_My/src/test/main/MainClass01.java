@@ -15,6 +15,11 @@ public class MainClass01 {
 		 */
 		MainClass01.a();
 		
+		/*
+		 * 동일한 클래스 안에 존재하는 static 메소드를 호출할 때는 클래스명. 은 생략가능
+		 */
+		b();
+		
 		System.out.println("main 메소드가 종료(returen)됩니다.");
 	}
 	
@@ -22,5 +27,9 @@ public class MainClass01 {
 	public static void a() {
 		System.out.println("a 메소드가 시작되었습니다.");
 		System.out.println("a 메소드가 종료(return)되었습니다.");
+	}
+	public static void b() {
+		System.out.println("b 메소드가 시작되었습니다.");
+		System.out.println("b 메소드가 종료(return)되었습니다.");		
 	}
 }
