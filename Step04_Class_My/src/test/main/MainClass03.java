@@ -18,6 +18,7 @@ public class MainClass03 {
 		unit.attack();
 		unit.attack();
 		unit.attack();
+	
 		
 		//System.out.println(unit.energy);
 		
