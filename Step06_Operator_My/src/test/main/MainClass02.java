@@ -24,7 +24,7 @@ public class MainClass02 {
 		
 		int num4=0;
 		// ++ 연산자가 변수 앞에 있으면 연산의 우선 순위가 = 보다 빠르다. 
-	
+		int result2 = ++num4;
 	}
 }
 
