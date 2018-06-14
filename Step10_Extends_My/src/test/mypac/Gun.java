@@ -4,7 +4,6 @@ public class Gun {
 	//필드
 	public Bullet bullet;
 	
-	
 	//생성자
 	public Gun(Bullet bullet) {
 		this.bullet=bullet;
