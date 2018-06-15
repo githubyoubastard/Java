@@ -19,7 +19,7 @@ public class MainClass02 {
 		bBox.push(new Banana());
 		
 		// 객체를 new 할때 Generic type 은 생략 가능 
-		FruitBox<Orange> oBox=new FruitBox<Orange>();
+		FruitBox<Orange> oBox=new FruitBox<>();
 		oBox.push(new Orange());
 	}
 }
