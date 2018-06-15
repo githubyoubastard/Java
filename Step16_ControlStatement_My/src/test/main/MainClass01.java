@@ -20,6 +20,5 @@ public class MainClass01 {
 		}else if(jumsu>=50) {
 			System.out.println("F입니다.");
 		}
-		
 	}
 }
