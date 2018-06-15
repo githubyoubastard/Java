@@ -13,10 +13,13 @@ public class MainClass02 {
 		FruitBox<Apple> aBox=new FruitBox<Apple>();
 		aBox.push(new Apple());
 		
-		FruitBox<BananaBox> bBox=new FruitBox<BananaBox>();
+		// Banana 객체를 담을수 있는 FruitBox 객체를 생성해서
+		// Banana 객체를 담아 보세요.
+		FruitBox<Banana> bBox=new FruitBox<Banana>();
 		bBox.push(new Banana());
 		
-		FruitBox<OrangeBox> oBox=new FruitBox<>();
+		// 객체를 new 할때 Generic type 은 생략 가능 
+		FruitBox<Orange> oBox=new FruitBox<>();
 		oBox.push(new Orange());
 	}
 }
