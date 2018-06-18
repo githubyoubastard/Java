@@ -31,10 +31,13 @@ public class MainClass06 {
 		 *    	nums[0]="유수열";		| 		nums.get(0)="유수열";
 		 *    
 		 *    
-		 *    		 <JavaScript>		|            <Java>
-		 *    var list=[];				|	List<Car> list=new ArrayList<>();
-		 *    list.push({});			|		list.add(new Car());
-		 *    								|
+		 *    		 				<JavaScript>		|            <Java>
+		 *    var list=[];								|	List<Car> list=new ArrayList<>();
+		 *    list.push({});							|		list.add(new Car());
+		 *    {name:"aa",drive:function(){}}	| 		class Car{
+		 *    																		public String name="aa";
+		 *    																		public void drive(){
+		 *    																										};
 		 */
 	}
 }
