@@ -28,6 +28,9 @@ public class MainClass08 {
 			MemberDto tmp=members.get(i);
 			System.out.println("번호:"+tmp.getNum()+" 이름:"+tmp.getName()+" 주소:"+tmp.getAddr());
 		}
+		for(MemberDto tmp:members) {
+			System.out.println("번호:"+tmp.getNum()+" 이름:"+tmp.getName()+" 주소:"+tmp.getAddr());
+		}
 	
 	}
 }

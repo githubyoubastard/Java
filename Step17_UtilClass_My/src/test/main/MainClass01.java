@@ -9,6 +9,12 @@ import java.util.ArrayList;
  *  -기본 data type은 저장할 수 없고 참조값 만 저장 할 수 있다.
  *  -Data type을 저장하려면 참조값으로 사용할 수 있는 기본 data type으로 바꿔서 사용해야함!
  *  -Generic 클래스를 지정하지 않으면 object가 Generic 클래스로 지정된다.
+ *  -데이터 저장 : .add(참조값)
+ *  -데이터 참조 : .get(인덱스);
+ *  -사이즈 참조 : .size()
+ *  -데이터 삭제 : .remove(인덱스);
+ *  -데이터 모두 삭제 : .clear();
+ *  -Serializable, List 인터페이스 등을 구현했다.
  */
 
 public class MainClass01 {
