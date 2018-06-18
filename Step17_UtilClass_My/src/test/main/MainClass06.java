@@ -35,9 +35,9 @@ public class MainClass06 {
 		 *    var list=[];								|	List<Car> list=new ArrayList<>();
 		 *    list.push({});							|		list.add(new Car());
 		 *    {name:"aa",drive:function(){}}	| 		class Car{
-		 *    																		public String name="aa";
-		 *    																		public void drive(){
-		 *    																										};
+		 *    												|						public String name="aa";
+		 *    												|						public void drive(){
+		 *    												|														};
 		 */
 	}
 }
