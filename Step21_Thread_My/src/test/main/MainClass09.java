@@ -41,7 +41,6 @@ public class MainClass09 {
 				System.out.println("원숭이가 인출한돈:"+totalMoney);
 			}
 		};
-		
 		//스레드 2개 시작 시키기
 		new Thread(run1).start();
 		new Thread(run2).start();
