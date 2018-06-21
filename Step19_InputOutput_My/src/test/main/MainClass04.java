@@ -28,7 +28,8 @@ public class MainClass04 {
 			nums[4]=106;
 			
 			// .write() 메소드 호출하면서 byte[] 객체 전달
-			os.write(nums); // auto flush 기능이 있음
+			os.write(nums); // auto flush 기능이 있음  flush를 써도 되고 안써도됨
+			os.flush();
 			System.out.println();
 			
 			// .write(byte[] , 시작인덱스, 갯수){}
