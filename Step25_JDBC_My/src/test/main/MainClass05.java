@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MainClass03 {
+public class MainClass05 {
 	public static void main(String[] args) {
 		Connection conn=null;
 		try {
@@ -23,18 +23,28 @@ public class MainClass03 {
 			se.printStackTrace();
 		}
 		
-		// [ member 테이블에 update 수행하기 ]
-			int num=4;
-			
+		// [ member 테이블에 특정회원의 정보 select 수행하기 ]
+		
+		//수정할 회원의 정보 
+		int num=2; //select할 회원의 번호
+		
 		//필요한 객체를 담을 변수 만들기
 		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 		try {
-			String sql="delete from member where num=?";
+			String sql="select num,name,addr from member where num=?";
 			//sql 문을 수행할 PreparedStatement 객체 얻어내기
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, 4);
-			pstmt.executeUpdate();
-			System.out.println("회원 정보 삭제 완료");
+			//?에 값 바인딩
+			pstmt.setInt(1, num);
+			//쿼리문 수행하고 결과를 resultset으로 받기
+			rs=pstmt.executeQuery();
+			if(rs.next()) { //primary key로 했기때문에 while반복문을 할 필요는 없음
+				String name=rs.getString("name");
+				String addr=rs.getString("addr");
+				System.out.println(num+"|"+name+"|"+addr);
+			}
+			System.out.println("회원정보 가져오기 성공");
 		}catch(SQLException se) {
 			se.printStackTrace();
 		}finally {
@@ -43,6 +53,6 @@ public class MainClass03 {
 				if(conn!=null)conn.close();
 			}catch(Exception e) {}
 		}
-		System.out.println("main 메소드가 종료");
+		System.out.println("main 메소드가 종료 됩니다.");
 	}
 }

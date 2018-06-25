@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MainClass03 {
+public class MainClass06 {
 	public static void main(String[] args) {
 		Connection conn=null;
 		try {
@@ -24,17 +24,25 @@ public class MainClass03 {
 		}
 		
 		// [ member 테이블에 update 수행하기 ]
-			int num=4;
-			
+		
+		//수정할 회원의 정보 
+		int num=1;
+		String name="이정호";
+		String addr="아현동";
+		
 		//필요한 객체를 담을 변수 만들기
 		PreparedStatement pstmt=null;
 		try {
-			String sql="delete from member where num=?";
+			String sql="UPDATE member SET name=?,addr=? WHERE num=?";
 			//sql 문을 수행할 PreparedStatement 객체 얻어내기
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, 4);
+			// ? 에 값 바인딩하기
+			pstmt.setString(1, name);
+			pstmt.setString(2, addr);
+			pstmt.setInt(3, num);
+			// sql 문 수행하기
 			pstmt.executeUpdate();
-			System.out.println("회원 정보 삭제 완료");
+			System.out.println("회원정보가 수정되었습니다.");
 		}catch(SQLException se) {
 			se.printStackTrace();
 		}finally {
@@ -43,6 +51,6 @@ public class MainClass03 {
 				if(conn!=null)conn.close();
 			}catch(Exception e) {}
 		}
-		System.out.println("main 메소드가 종료");
+		System.out.println("main 메소드가 종료 됩니다.");
 	}
 }
