@@ -155,7 +155,6 @@ public class MemberDao {
 	public List<MemberDto> getList(){
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		int flag=0;
 		ResultSet rs=null;
 		List<MemberDto> list=new ArrayList<>();
 		try {
