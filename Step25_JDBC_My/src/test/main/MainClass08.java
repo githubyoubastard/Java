@@ -13,7 +13,6 @@ public class MainClass08 {
 		//MemberDao 객체의 참조값 얻어와서 변수에 담기
 		MemberDao dao=MemberDao.getInstance();
 		//회원정보를 변수에 담기
-		
 		dao.insert(new MemberDto(num,name,addr));
 	}
 }
