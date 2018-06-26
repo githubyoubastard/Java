@@ -10,7 +10,6 @@ public class MainClass12 {
 		/*
 		 * Memberdao 객체를 이용해서 회원 목록을 받아와서
 		 * useList() 메소드를 호출하면서 전달해보세여
-		 * 
 		 */
 		MemberDao dao=MemberDao.getInstance();
 		List<MemberDto> list=dao.getList();
