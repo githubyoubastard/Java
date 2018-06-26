@@ -2,7 +2,9 @@ package test.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import test.dto.MemberDto;
@@ -63,20 +65,136 @@ public class MemberDao {
 	}
 	//회원정보를 수정하는 메소드
 	public boolean update(MemberDto dto) {
-		return false;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		int flag=0;
+		try {
+			conn=new DBConnect().getConn();
+			String sql="UPDATE member SET name=?,addr=?"
+					+ " WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getAddr());
+			pstmt.setInt(3, dto.getNum());
+			flag=pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e) {}
+		}
+		if(flag>0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	//회원정보를 삭제하는 메소드
 	public boolean delete(int num) {
-		return false;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		MemberDto mem=null;
+		int flag=0;
+		try {
+			conn=new DBConnect().getConn();
+			String sql="DELETE FROM member WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			flag=pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e) {}
+		}
+		if(flag>0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	//회원 한명의 정보를 리턴하는 메소드
 	public MemberDto getData(int num) {
-		return null;
+		//필요한 지역변수 만들기
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		//회원정보를 담을 MemberDto type의 지역변수를 미리 만들기.
+		MemberDto dto=null;
+		try {
+			conn=new DBConnect().getConn();
+			String sql="SELECT name,addr FROM member"
+					+ " WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			//쿼리문 수행하고 ResultSet 리턴 받기
+			rs=pstmt.executeQuery();
+			if(rs.next()) {//커서를 한칸내려서
+				//커서가 위치한 곳의 name, addr 읽어오기 
+				String name=rs.getString("name");
+				String addr=rs.getString("addr");
+				dto=new MemberDto(num,name,addr);
+			}
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e) {}
+		}
+		
+		return dto;
 	}
 	//회원 목록을 리턴하는 메소드
 	public List<MemberDto> getList(){
-		return null;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		int flag=0;
+		ResultSet rs=null;
+		List<MemberDto> list=new ArrayList<>();
+		try {
+			conn=new DBConnect().getConn();
+			String sql="select num,name,addr from member order by num asc";
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int num=rs.getInt("num");
+				String name=rs.getString("name");
+				String addr=rs.getString("addr");
+				//회원정보를 MemberDto 객체에 담아서 
+				MemberDto dto=new MemberDto(num,name,addr);
+				// List에  누적 시키기
+				list.add(dto);
+			}
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+				if(rs!=null)rs.close();
+			}catch (Exception e) {}
+		}
+		return list;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
