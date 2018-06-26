@@ -25,26 +25,25 @@ public class MainClass05 {
 		
 		// [ member 테이블에 특정회원의 정보 select 수행하기 ]
 		
-		//수정할 회원의 정보 
-		int num=2; //select할 회원의 번호
+		int num=2; //select 할 회원의 번호 
 		
 		//필요한 객체를 담을 변수 만들기
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			String sql="select num,name,addr from member where num=?";
+			String sql="SELECT name,addr FROM member"
+					+ " WHERE num=?";
 			//sql 문을 수행할 PreparedStatement 객체 얻어내기
 			pstmt=conn.prepareStatement(sql);
-			//?에 값 바인딩
+			//? 에 값 바인딩
 			pstmt.setInt(1, num);
-			//쿼리문 수행하고 결과를 resultset으로 받기
+			//쿼리문 수행하고 결과를 ResultSet 으로 받기 
 			rs=pstmt.executeQuery();
-			if(rs.next()) { //primary key로 했기때문에 while반복문을 할 필요는 없음
+			if(rs.next()) {
 				String name=rs.getString("name");
 				String addr=rs.getString("addr");
 				System.out.println(num+"|"+name+"|"+addr);
 			}
-			System.out.println("회원정보 가져오기 성공");
 		}catch(SQLException se) {
 			se.printStackTrace();
 		}finally {

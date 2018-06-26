@@ -23,26 +23,47 @@ public class MainClass06 {
 			se.printStackTrace();
 		}
 		
-		// [ member 테이블에 update 수행하기 ]
+		// [ member 테이블에 delete 수행하기 ]
 		
-		//수정할 회원의 정보 
-		int num=1;
-		String name="이정호";
-		String addr="아현동";
+		int num=4; //삭제할 회원의 번호 
 		
 		//필요한 객체를 담을 변수 만들기
 		PreparedStatement pstmt=null;
 		try {
-			String sql="UPDATE member SET name=?,addr=? WHERE num=?";
+			String sql="DELETE FROM member WHERE num=?";
 			//sql 문을 수행할 PreparedStatement 객체 얻어내기
 			pstmt=conn.prepareStatement(sql);
-			// ? 에 값 바인딩하기
-			pstmt.setString(1, name);
-			pstmt.setString(2, addr);
-			pstmt.setInt(3, num);
-			// sql 문 수행하기
-			pstmt.executeUpdate();
-			System.out.println("회원정보가 수정되었습니다.");
+			//? 에 값 바인딩하기
+			pstmt.setInt(1, num);
+			/* 
+			 * .executeUpdate() 메소드는 int 를 리턴해준다.
+			 * 
+			 * 영향을 받은 row 의 갯수를 리턴해준다. 
+			 * 
+			 * - 추가된 row 의 갯수
+			 * - 수정된 row 의 갯수
+			 * - 삭제된 row 의 갯수 
+			 * 
+			 * 따라서 리턴해 주는 값이 0 보다 큰지 확인하면
+			 * 작업의 성공 여부를 알수 있다. 
+			 * 
+			 * 예) 
+			 * 
+			 * int result=pstmt.executeUpdate();
+			 * if(result>0){
+			 *   //성공
+			 *   
+			 * }else{
+			 *   //실패 
+			 *   
+			 * }
+			 */
+			int flag=pstmt.executeUpdate();
+			if(flag>0) {
+				System.out.println(flag+" 개의 row 삭제!");
+			}else {
+				System.out.println("삭제된 row 없음");
+			}
 		}catch(SQLException se) {
 			se.printStackTrace();
 		}finally {
